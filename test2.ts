@@ -1,4 +1,4 @@
 var add = (a: number, b: number) => {
-    return b + a;
+    return a + b + 100;
 }
 add(1, 2)
