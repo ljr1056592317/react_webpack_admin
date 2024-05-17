@@ -1,0 +1,29 @@
+# EditorConfig 能帮助开发者在不同的编辑器和集成开发环境（IDE）间定义和维护一致的编程风格
+# 官方文档：http://editorconfig.org
+# 设为顶级配置文件
+root = true
+
+# 对所有文件应用以下配置
+[*]
+# 使用空格进行缩进
+indent_style = space
+# 每个缩进等级为2个空格
+indent_size = 2
+# 使用 LF 作为行尾字符
+end_of_line = lf
+# 将字符集设置为UTF-8
+charset = utf-8
+# 去除每行代码后的空白字符
+trim_trailing_whitespace = true
+# 文件末尾添加一个新行
+insert_final_newline = true
+
+# 针对.md文件的单独配置
+[*.md]
+# 在Markdown文件中，不去除每行代码后的空白字符
+trim_trailing_whitespace = false
+
+# 针对 Makefile 的单独配置
+[Makefile]
+# 使用 TAB 进行缩进
+indent_style = tab
