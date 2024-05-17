@@ -1,0 +1,16 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+## 设置提交git的忽略文件
+
+# dependencies
+/node_modules
+/npm-debug.log*
+/yarn-error.log
+/yarn.lock
+/package-lock.json
+
+# production
+/dist
+
+# misc
+.DS_Store
