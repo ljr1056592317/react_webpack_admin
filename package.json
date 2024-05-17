@@ -4,7 +4,8 @@
   "description": "这是一个react后台的基础项目",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
