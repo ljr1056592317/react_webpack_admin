@@ -24,6 +24,38 @@ const PLUGINS = [
   }),
 ]
 
+const getCssLoaders = (importLoaders) => [
+  'style-loader',
+  {
+    loader: 'css-loader',
+    options: {
+      modules: false,
+      sourceMap: isDev,
+      importLoaders,
+    },
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      postcssOptions: {
+        plugins: [
+          // 修复一些和 flex 布局相关的 bug
+          require('postcss-flexbugs-fixes'),
+          require('postcss-preset-env')({
+            autoprefixer: {
+              grid: true,
+              flexbox: 'no-2009',
+            },
+            stage: 3,
+          }),
+          require('postcss-normalize'),
+        ],
+        sourceMap: isDev,
+      },
+    },
+  },
+]
+
 module.exports = {
   entry: {
     main: resolve(__dirname, '../src/app.js'),
@@ -37,30 +69,12 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: false, // 默认就是 false, 若要开启，可在官网具体查看可配置项
-              sourceMap: isDev, // 开启后与 devtool 设置一致, 开发环境开启，生产环境关闭
-              importLoaders: 0, // 指定在 CSS loader 处理前使用的 laoder 数量
-            },
-          },
-        ],
+        use: getCssLoaders(1),
       },
       {
         test: /\.less$/,
         use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: false,
-              sourceMap: isDev,
-              importLoaders: 1, // 需要先被 less-loader 处理，所以这里设置为 1
-            },
-          },
+          ...getCssLoaders(2),
           {
             loader: 'less-loader',
             options: {
