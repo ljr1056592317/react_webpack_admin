@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start": "cross-env NODE_ENV=development NODE_ENV_KEY=dev webpack-dev-server --config ./config/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production NODE_ENV_KEY=prod webpack --config ./config/webpack.prod.js",
+    "build:test": "cross-env NODE_ENV=production NODE_ENV_KEY=test webpack --config ./config/webpack.prod.js",
+    "build:release": "cross-env NODE_ENV=production NODE_ENV_KEY=release webpack --config ./config/webpack.prod.js",
+    "build:aliyun": "cross-env NODE_ENV=production NODE_ENV_KEY=aliyun webpack --config ./config/webpack.prod.js"
   },
   "husky": {
     "hooks": {
@@ -31,6 +36,7 @@
     "@commitlint/config-conventional": "^19.2.2",
     "@eslint/js": "^9.2.0",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard-with-typescript": "^43.0.1",
@@ -38,10 +44,14 @@
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.34.1",
+    "html-webpack-plugin": "^5.6.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
-    "typescript": "^5.2.2"
-  },
-  "dependencies": {}
+    "typescript": "^5.2.2",
+    "webpack": "5.90.3",
+    "webpack-cli": "5.1.4",
+    "webpack-dev-server": "^5.0.4",
+    "webpack-merge": "^5.10.0"
+  }
 }
