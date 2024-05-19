@@ -22,9 +22,6 @@
     "*.{ts,tsx,js}": [
       "eslint --config .eslintrc.js"
     ],
-    "*.{css,less,scss}": [
-      "stylelint --config .stylelintrc.js"
-    ],
     "*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
       "prettier --write"
     ]
@@ -48,6 +45,8 @@
     "eslint-plugin-react": "^7.34.1",
     "html-webpack-plugin": "^5.6.0",
     "husky": "^9.0.11",
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "style-loader": "^4.0.0",
