@@ -58,11 +58,14 @@ const getCssLoaders = (importLoaders) => [
 
 module.exports = {
   entry: {
-    main: resolve(__dirname, '../src/app.js'),
+    main: resolve(__dirname, '../src/index.tsx'),
   },
   output: {
     path: resolve(__dirname, '../dist'),
     publicPath: '/',
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.json'],
   },
   plugins: PLUGINS,
   module: {
@@ -107,6 +110,31 @@ module.exports = {
           },
         },
         exclude: /node_modules/, //排除 node_modules 目录
+      },
+      {
+        // 匹配js/jsx/ts/tsx
+        test: /\.[tj]s(x?)$/,
+        // 排除node_modules
+        exclude: /node_modules/,
+        use: [
+          // 确定使用的loader
+          {
+            loader: 'babel-loader',
+            // 参数配置
+            options: {
+              cacheDirectory: true,
+              presets: [
+                // 解析react
+                [
+                  '@babel/preset-react',
+                  {
+                    runtime: 'automatic', // 设置运行时的转换，此后不用在顶层导入react，react17开始可以使用
+                  },
+                ],
+              ],
+            },
+          },
+        ],
       },
     ],
   },

@@ -52,6 +52,8 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': OFF,
     'no-tabs': OFF,
     '@typescript-eslint/indent': OFF,
+    'react/react-in-jsx-scope': OFF,
+    'react/jsx-uses-react': OFF,
   },
   // 忽略文件
   ignorePatterns: [
