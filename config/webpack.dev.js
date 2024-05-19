@@ -4,7 +4,6 @@ const { SERVER_HOST, SERVER_PORT } = require('../src/utils/envConstans')
 
 const devWebpackConfig = merge(common, {
   mode: 'development',
-  stats: 'errors-only', // 终端仅打印 error
   devtool: 'eval-source-map',
   devServer: {
     host: SERVER_HOST, // 指定 host，不设置的话默认是 localhost
