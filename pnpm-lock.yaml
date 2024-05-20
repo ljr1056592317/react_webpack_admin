@@ -53,8 +53,8 @@ devDependencies:
     specifier: ^7.0.3
     version: 7.0.3
   css-loader:
-    specifier: ^7.1.1
-    version: 7.1.1(webpack@5.90.3)
+    specifier: ^6.10.0
+    version: 6.10.0(webpack@5.90.3)
   eslint:
     specifier: ^8.51.0
     version: 8.51.0
@@ -113,8 +113,8 @@ devDependencies:
     specifier: ^3.2.5
     version: 3.2.5
   style-loader:
-    specifier: ^4.0.0
-    version: 4.0.0(webpack@5.90.3)
+    specifier: ^3.3.4
+    version: 3.3.4(webpack@5.90.3)
   typescript:
     specifier: ^5.2.2
     version: 5.2.2
@@ -2512,12 +2512,12 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /css-loader@7.1.1(webpack@5.90.3):
-    resolution: {integrity: sha512-OxIR5P2mjO1PSXk44bWuQ8XtMK4dpEqpIyERCx3ewOo3I8EmbcxMPUc5ScLtQfgXtOojoMv57So4V/C02HQLsw==}
-    engines: {node: '>= 18.12.0'}
+  /css-loader@6.10.0(webpack@5.90.3):
+    resolution: {integrity: sha512-LTSA/jWbwdMlk+rhmElbDR2vbtQoTBPr7fkJE+mxrHj+7ru0hUmHafDRzWIjIHTwpitWVaqY2/UWGRca3yUgRw==}
+    engines: {node: '>= 12.13.0'}
     peerDependencies:
       '@rspack/core': 0.x || 1.x
-      webpack: ^5.27.0
+      webpack: ^5.0.0
     peerDependenciesMeta:
       '@rspack/core':
         optional: true
@@ -6390,11 +6390,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /style-loader@4.0.0(webpack@5.90.3):
-    resolution: {integrity: sha512-1V4WqhhZZgjVAVJyt7TdDPZoPBPNHbekX4fWnCJL1yQukhCeZhJySUL+gL9y6sNdN95uEOS83Y55SqHcP7MzLA==}
-    engines: {node: '>= 18.12.0'}
+  /style-loader@3.3.4(webpack@5.90.3):
+    resolution: {integrity: sha512-0WqXzrsMTyb8yjZJHDqwmnwRJvhALK9LfRtRc6B4UTWe8AijYLZYZ9thuJTZc2VfQWINADW/j+LiJnfy2RoC1w==}
+    engines: {node: '>= 12.13.0'}
     peerDependencies:
-      webpack: ^5.27.0
+      webpack: ^5.0.0
     dependencies:
       webpack: 5.90.3(webpack-cli@5.1.4)
     dev: true

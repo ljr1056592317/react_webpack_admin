@@ -1,5 +1,7 @@
+import styles from './index.module.less'
+
 const Header = () => {
-  return <div>我的头部</div>
+  return <div className={styles.header}>我的头部</div>
 }
 
 export default Header

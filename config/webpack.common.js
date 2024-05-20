@@ -29,7 +29,10 @@ const getCssLoaders = (importLoaders) => [
   {
     loader: 'css-loader',
     options: {
-      modules: false,
+      // 开启cssmodules，不然我们使用styles到组件中的样式将无法进行打包，开启不了css样式隔离
+      modules: {
+        localIdentName: '[local]_[hash:base64:5]',
+      },
       sourceMap: isDev,
       importLoaders,
     },
