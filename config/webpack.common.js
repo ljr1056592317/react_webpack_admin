@@ -1,10 +1,15 @@
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const eslint = require('eslint')
 const { isDev, PROJECTINFO } = require('../src/utils/envConstans')
+const WebpackBar = require('webpackbar')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin') // 启动本地服务/打包错误提示
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 const PLUGINS = [
   new HtmlWebpackPlugin({
     title: PROJECTINFO.name, // 动态设置标题，打包后插入到 <title><%= htmlWebpackPlugin.options.title %></title>
+    favicon: resolve(__dirname, '../public/favicon.ico'), // 网站头部图片
     template: resolve(__dirname, '../public/index.html'),
     filename: 'index.html', //
     cache: false, // 特别重要：防止之后使用v6版本 copy-webpack-plugin 时代码修改一刷新页面为空问题。
@@ -21,6 +26,25 @@ const PLUGINS = [
           minifyURLs: true,
           useShortDoctype: true,
         },
+  }),
+  // 进度条
+  new WebpackBar({
+    name: '正在构建中',
+    color: '#85d', // 默认green，进度条颜色支持HEX
+    // basic: false, // 默认true，启用一个简单的日志报告器
+    // profile: false, // 默认false，启用探查器。
+  }),
+  // ts的检查输出到控制台
+  new ForkTsCheckerWebpackPlugin({
+    typescript: {
+      configFile: resolve(__dirname, '../tsconfig.json'),
+    },
+  }),
+  // 将eslint的检查也一并放入控制台
+  new ESLintPlugin({
+    extensions: ['js', 'jsx', 'ts', 'tsx'],
+    eslintPath: require.resolve('eslint'),
+    context: resolve(__dirname, '../src'),
   }),
 ]
 

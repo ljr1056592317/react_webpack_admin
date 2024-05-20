@@ -54,6 +54,8 @@ module.exports = {
     '@typescript-eslint/indent': OFF,
     'react/react-in-jsx-scope': OFF,
     'react/jsx-uses-react': OFF,
+    'no-unused-vars': WARN, // 禁止出现未使用过的变量
+    '@typescript-eslint/no-unused-vars': WARN,
   },
   // 忽略文件
   ignorePatterns: [
