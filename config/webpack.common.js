@@ -5,6 +5,7 @@ const { isDev, PROJECTINFO } = require('../src/utils/envConstans')
 const WebpackBar = require('webpackbar')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin') // 启动本地服务/打包错误提示
 const ESLintPlugin = require('eslint-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 抽离css文件, 这个插件将CSS取到单独的文件中。它为每个包含CSS的JS文件创建一个CSS文件。它支持按需加载 CSS 和 SourceMaps。
 
 const PLUGINS = [
   new HtmlWebpackPlugin({
@@ -49,7 +50,8 @@ const PLUGINS = [
 ]
 
 const getCssLoaders = (importLoaders) => [
-  'style-loader',
+  // 执行顺序从后到前 less-loader -> postcss-loader -> css-loader -> style-loader/MiniCssExtractPlugin.loader
+  isDev ? 'style-loader' : MiniCssExtractPlugin.loader, // style-loader的作用就是将结果以style标签的方式插入DOM树中。style-loader将css-loader打包好的 CSS 代码以<style>标签的形式插入到 HTML 文件中
   {
     loader: 'css-loader',
     options: {
