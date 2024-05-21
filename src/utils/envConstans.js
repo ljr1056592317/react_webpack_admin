@@ -32,10 +32,12 @@ const isDev = process.env.NODE_ENV !== 'production'
 const PROJECTINFO = projectMapObj[NODE_ENV_KEY]
 const SERVER_HOST = '127.0.0.1'
 const SERVER_PORT = 9000
+const shouldOpenAnalyzer = false //是否启动插件来分析项目中的各个资源所占的体积
 module.exports = {
   NODE_ENV,
   isDev,
   PROJECTINFO,
   SERVER_HOST,
   SERVER_PORT,
+  shouldOpenAnalyzer,
 }
