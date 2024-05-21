@@ -21,7 +21,7 @@ const PLUGINS = [
   new CompressionPlugin({
     test: /\.js$|\.html$|.\css/, // 匹配文件名,一般来说css不会很大，在压成.gz没有啥意义
     threshold: 10240, // 对超过10k的数据压缩
-    deleteOriginalAssets: true, // 不删除源文件，如果删除也源文件，那么当用户出现访问.gz文件访问不到，还可以访问源文件，双重保障
+    deleteOriginalAssets: false, // 不删除源文件，如果删除也源文件，那么当用户出现访问.gz文件访问不到，还可以访问源文件，双重保障
     // minRatio: 0.8, // 压缩比
   }),
 ].filter(Boolean)
