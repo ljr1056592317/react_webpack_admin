@@ -64,6 +64,9 @@ devDependencies:
   compression-webpack-plugin:
     specifier: ^11.1.0
     version: 11.1.0(webpack@5.90.3)
+  core-js:
+    specifier: ^3.27.2
+    version: 3.27.2
   cross-env:
     specifier: ^7.0.3
     version: 7.0.3
@@ -3571,6 +3574,11 @@ packages:
 
   /core-js-pure@3.37.1:
     resolution: {integrity: sha512-J/r5JTHSmzTxbiYYrzXg9w1VpqrYt+gexenBE9pugeyhwPZTAEJddyiReJWsLO6uNQ8xJZFbod6XC7KKwatCiA==}
+    requiresBuild: true
+    dev: true
+
+  /core-js@3.27.2:
+    resolution: {integrity: sha512-9ashVQskuh5AZEZ1JdQWp1GqSoC1e1G87MzRqg2gIfVAQ7Qn9K+uFj8EcniUFA4P2NLZfV+TOlX1SzoKfo+s7w==}
     requiresBuild: true
     dev: true
 

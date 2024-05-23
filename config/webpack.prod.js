@@ -19,7 +19,7 @@ const PLUGINS = [
     ignoreOrder: true,
   }),
   new CompressionPlugin({
-    test: /\.js$|\.html$|.\css/, // 匹配文件名,一般来说css不会很大，在压成.gz没有啥意义
+    test: /\.js$|\.html$|\.css/, // 匹配文件名,一般来说css不会很大，在压成.gz没有啥意义
     threshold: 10240, // 对超过10k的数据压缩
     deleteOriginalAssets: false, // 不删除源文件，如果删除也源文件，那么当用户出现访问.gz文件访问不到，还可以访问源文件，双重保障
     // minRatio: 0.8, // 压缩比
@@ -33,7 +33,7 @@ const proWebpackConfig = merge(common, {
     publicPath: '/',
     filename: 'js/[name].[contenthash:8].js',
     assetModuleFilename: 'images/[name].[contenthash:8].[ext]',
-    chunkFilename: 'js/[name][id].[chunkhash].js',
+    chunkFilename: 'js/[name].[chunkhash:8].js',
     clean: true, //在生成文件之前清空 output 目录 ，可以用来替代CleanWebpackPlugin插件
   },
   plugins: PLUGINS,
