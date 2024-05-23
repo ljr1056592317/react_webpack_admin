@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
     "start": "cross-env NODE_ENV=development NODE_ENV_KEY=dev webpack-dev-server --config ./config/webpack.dev.js",
-    "build": "cross-env NODE_ENV=production NODE_ENV_KEY=prod webpack --config ./config/webpack.prod.js",
+    "build": "cross-env NODE_ENV=production NODE_ENV_KEY=prod webpack --config ./config/webpack.prod.js && rimraf ./dist/js/*.map",
     "build:test": "cross-env NODE_ENV=production NODE_ENV_KEY=test webpack --config ./config/webpack.prod.js",
     "build:release": "cross-env NODE_ENV=production NODE_ENV_KEY=release webpack --config ./config/webpack.prod.js",
     "build:aliyun": "cross-env NODE_ENV=production NODE_ENV_KEY=aliyun webpack --config ./config/webpack.prod.js"

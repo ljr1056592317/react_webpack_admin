@@ -7,7 +7,11 @@ const { SERVER_HOST, SERVER_PORT } = require('../src/utils/envConstans')
 
 const devWebpackConfig = merge(common, {
   mode: 'development',
-  devtool: 'eval-source-map',
+  // 默认为eval：打包生成的文件中会使用 eval 函数，并且在 eval 函数的代码最后添加注释 。除了完全不使用 source-map，eval时最快的，但对于定位调试不是很好用
+  // mode为production时， devtool:默认为不配置
+  // source-map： 完整的源代码文件
+  // cheap-module-source-map：虽然速度不及eval，并且只有行映射，没有列映射，没有source-map那么完整，但可以准确地获取报错信息，方便开发调试，同时速度也会比source-map快
+  devtool: 'cheap-module-source-map', //
   // 控制 bundle 信息该怎么显示
   stats: 'errors-warnings',
   cache: {

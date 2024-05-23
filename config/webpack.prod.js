@@ -8,7 +8,7 @@ const TerserPlugin = require('terser-webpack-plugin') // 这个插件使用 ters
 const CompressionPlugin = require('compression-webpack-plugin') // 静态资源压缩, 使用Content-Encoding为它们提供服务
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin') // 构建速度时间展示
 
-const { shouldOpenAnalyzer, shouldSpeedMeasurePlugin } = require('../src/utils/envConstans.js')
+const { shouldOpenAnalyzer, shouldSpeedMeasurePlugin, PROJECTINFO } = require('../src/utils/envConstans.js')
 
 const spm = new SpeedMeasurePlugin()
 
@@ -31,7 +31,9 @@ const PLUGINS = [
 
 const prodWebpackConfig = merge(common, {
   mode: 'production',
-  devtool: false,
+  // 生产环境不开启源代码映射，安全问题。但我们测试环境可以开启，方便我们在测试环境定位问题
+  // 如果引入了错误监控系统sentry，那么生产环境就的
+  devtool: PROJECTINFO.devtool,
   output: {
     publicPath: '/',
     filename: 'js/[name].[contenthash:8].js',

@@ -4,26 +4,33 @@ const projectMapObj = {
     name: PROJECT_NAME,
     baseApi: 'https://dev',
     theme: 'default',
+    devtool: 'cheap-module-source-map',
   },
   test: {
     name: PROJECT_NAME,
     baseApi: 'https://test',
     theme: 'default',
+    devtool: 'cheap-module-source-map',
   },
   release: {
     name: PROJECT_NAME,
     baseApi: 'https://release',
     theme: 'default',
+    devtool: 'source-map',
   },
   prod: {
     name: PROJECT_NAME,
     baseApi: 'https://prod',
     theme: 'default',
+    // devtool: false,
+    //引入错误监控后，将输出源代码，以方便源代码的上传到错误监控系统中
+    devtool: 'source-map',
   },
   aliyun: {
     name: PROJECT_NAME,
     baseApi: 'https://aliyun',
     theme: 'default',
+    devtool: 'source-map',
   },
 }
 const NODE_ENV = process.env.NODE_ENV
