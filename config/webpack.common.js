@@ -141,6 +141,13 @@ module.exports = {
         // 排除node_modules
         exclude: /node_modules/,
         use: [
+          // 多线程构建项目
+          {
+            loader: 'thread-loader', // 需要安装
+            options: {
+              workers: 3, // 进程3个
+            },
+          },
           // 确定使用的loader
           {
             loader: 'babel-loader',
