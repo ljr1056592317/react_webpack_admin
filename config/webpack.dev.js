@@ -10,6 +10,12 @@ const devWebpackConfig = merge(common, {
   devtool: 'eval-source-map',
   // 控制 bundle 信息该怎么显示
   stats: 'errors-warnings',
+  cache: {
+    type: 'filesystem', //保存位置，开发环境下默认为memory类型，生产环境cache配置默认是关闭的。
+    buildDependencies: {
+      config: [__filename],
+    },
+  },
   plugins: [
     // 将eslint的检查也一并放入控制台 ，这个配置插件应该放在本地开发就好了
     new ESLintPlugin({
