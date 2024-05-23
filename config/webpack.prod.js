@@ -6,8 +6,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 抽离css文�
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin') // 这个插件优化和压缩css
 const TerserPlugin = require('terser-webpack-plugin') // 这个插件使用 terser 来压缩 JavaScript，可以多进程压缩，删除注释、去除console
 const CompressionPlugin = require('compression-webpack-plugin') // 静态资源压缩, 使用Content-Encoding为它们提供服务
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin') // 构建速度时间展示
 
-const { shouldOpenAnalyzer } = require('../src/utils/envConstans.js')
+const { shouldOpenAnalyzer, shouldSpeedMeasurePlugin } = require('../src/utils/envConstans.js')
+
+const spm = new SpeedMeasurePlugin()
 
 const PLUGINS = [
   // 使用交互式可缩放树形地图可视化 webpack 输出文件的大小
@@ -26,7 +29,7 @@ const PLUGINS = [
   }),
 ].filter(Boolean)
 
-const proWebpackConfig = merge(common, {
+const prodWebpackConfig = merge(common, {
   mode: 'production',
   devtool: false,
   output: {
@@ -78,4 +81,9 @@ const proWebpackConfig = merge(common, {
     },
   },
 })
-module.exports = proWebpackConfig
+module.exports = () => {
+  if (shouldSpeedMeasurePlugin) {
+    return spm.wrap(prodWebpackConfig)
+  }
+  return prodWebpackConfig
+}

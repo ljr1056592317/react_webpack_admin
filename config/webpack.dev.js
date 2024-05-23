@@ -1,4 +1,6 @@
+const { resolve } = require('path')
 const { merge } = require('webpack-merge')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const common = require('./webpack.common')
 
 const { SERVER_HOST, SERVER_PORT } = require('../src/utils/envConstans')
@@ -8,6 +10,14 @@ const devWebpackConfig = merge(common, {
   devtool: 'eval-source-map',
   // 控制 bundle 信息该怎么显示
   stats: 'errors-warnings',
+  plugins: [
+    // 将eslint的检查也一并放入控制台 ，这个配置插件应该放在本地开发就好了
+    new ESLintPlugin({
+      extensions: ['js', 'jsx', 'ts', 'tsx'],
+      eslintPath: require.resolve('eslint'),
+      context: resolve(__dirname, '../src'),
+    }),
+  ],
   devServer: {
     host: SERVER_HOST, // 指定 host，不设置的话默认是 localhost
     port: SERVER_PORT, // 指定端口，默认是8080

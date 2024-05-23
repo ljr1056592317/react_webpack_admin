@@ -1,10 +1,8 @@
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const eslint = require('eslint')
 const { isDev, PROJECTINFO } = require('../src/utils/envConstans')
 const WebpackBar = require('webpackbar')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin') // 启动本地服务/打包错误提示
-const ESLintPlugin = require('eslint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 抽离css文件, 这个插件将CSS取到单独的文件中。它为每个包含CSS的JS文件创建一个CSS文件。它支持按需加载 CSS 和 SourceMaps。
 
 const PLUGINS = [
@@ -40,12 +38,6 @@ const PLUGINS = [
     typescript: {
       configFile: resolve(__dirname, '../tsconfig.json'),
     },
-  }),
-  // 将eslint的检查也一并放入控制台
-  new ESLintPlugin({
-    extensions: ['js', 'jsx', 'ts', 'tsx'],
-    eslintPath: require.resolve('eslint'),
-    context: resolve(__dirname, '../src'),
   }),
 ]
 
