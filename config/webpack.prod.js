@@ -36,6 +36,12 @@ const proWebpackConfig = merge(common, {
     chunkFilename: 'js/[name].[chunkhash:8].js',
     clean: true, //在生成文件之前清空 output 目录 ，可以用来替代CleanWebpackPlugin插件
   },
+  // 让webpack遇到但不打包的文件
+  externals: {
+    jquery: '$',
+    react: 'React',
+    'react-dom': 'ReactDOM',
+  },
   plugins: PLUGINS,
   optimization: {
     // 允许你通过提供一个或多个定制过的 TerserPlugin 实例， 覆盖默认压缩工具(minimizer)
