@@ -4,6 +4,7 @@ const { isDev, PROJECTINFO } = require('../src/utils/envConstans')
 const WebpackBar = require('webpackbar')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin') // 启动本地服务/打包错误提示
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 抽离css文件, 这个插件将CSS取到单独的文件中。它为每个包含CSS的JS文件创建一个CSS文件。它支持按需加载 CSS 和 SourceMaps。
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin') // 引入 Node 模块相关的 polyfill ，解决浏览器环境想使用node环境的变量
 
 const PLUGINS = [
   new HtmlWebpackPlugin({
@@ -39,6 +40,7 @@ const PLUGINS = [
       configFile: resolve(__dirname, '../tsconfig.json'),
     },
   }),
+  new NodePolyfillPlugin(),
 ]
 
 const getCssLoaders = (importLoaders) => [
