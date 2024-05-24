@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
     "start": "cross-env NODE_ENV=development NODE_ENV_KEY=dev webpack-dev-server --config ./config/webpack.dev.js",
-    "build": "cross-env NODE_ENV=production NODE_ENV_KEY=prod webpack --config ./config/webpack.prod.js && rimraf ./dist/js/*.map",
+    "build": "cross-env NODE_ENV=production NODE_ENV_KEY=prod webpack --config ./config/webpack.prod.js && rm -rf ./dist/js/*.map",
     "build:test": "cross-env NODE_ENV=production NODE_ENV_KEY=test webpack --config ./config/webpack.prod.js",
     "build:release": "cross-env NODE_ENV=production NODE_ENV_KEY=release webpack --config ./config/webpack.prod.js",
     "build:aliyun": "cross-env NODE_ENV=production NODE_ENV_KEY=aliyun webpack --config ./config/webpack.prod.js"
@@ -39,6 +39,7 @@
     "@commitlint/config-conventional": "^19.2.2",
     "@eslint/js": "^9.2.0",
     "@sentry/react": "^8.3.0",
+    "@sentry/webpack-plugin": "^2.16.1",
     "@types/node": "^20.12.12",
     "@types/react": "18.2.66",
     "@types/react-dom": "18.2.22",

@@ -1,17 +1,15 @@
 import { NavLink, useRoutes } from 'react-router-dom'
 import routerConfig from '@/router'
-import { SentryDns } from './utils/envConstans'
+import { SentryConfig } from './utils/envConstans'
 import { useSentry } from './hooks'
-console.log(process.env.NODE_ENV, 'process.env.NODE_ENV')
-console.log(process.env, '2')
 
 function App() {
   const RouterElement = useRoutes(routerConfig)
-  useSentry(SentryDns as string)
+  useSentry(SentryConfig.dns as string)
   const throwError = () => {
-    const a = { fn: 1 }
-    // console.log(a.sss);
-    const e = new Error()
+    // const a = { fn: 1 }
+    // // console.log(a.sss);
+    // const e = new Error()
     throwError()
   }
   return (

@@ -7,8 +7,14 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin') // 这个插�
 const TerserPlugin = require('terser-webpack-plugin') // 这个插件使用 terser 来压缩 JavaScript，可以多进程压缩，删除注释、去除console
 const CompressionPlugin = require('compression-webpack-plugin') // 静态资源压缩, 使用Content-Encoding为它们提供服务
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin') // 构建速度时间展示
+const { sentryWebpackPlugin } = require('@sentry/webpack-plugin')
 
-const { shouldOpenAnalyzer, shouldSpeedMeasurePlugin, PROJECTINFO } = require('../src/utils/envConstans.js')
+const {
+  shouldOpenAnalyzer,
+  shouldSpeedMeasurePlugin,
+  PROJECTINFO,
+  SentryConfig,
+} = require('../src/utils/envConstans.js')
 
 const spm = new SpeedMeasurePlugin()
 
@@ -26,6 +32,16 @@ const PLUGINS = [
     threshold: 10240, // 对超过10k的数据压缩
     deleteOriginalAssets: false, // 不删除源文件，如果删除也源文件，那么当用户出现访问.gz文件访问不到，还可以访问源文件，双重保障
     // minRatio: 0.8, // 压缩比
+  }),
+  // 打包时上传源代码到错误监控系统中
+  sentryWebpackPlugin({
+    org: SentryConfig.org, // 组织
+    project: SentryConfig.project, // sentry创建的项目名字
+    authToken: SentryConfig.authToken, // 令牌
+    include: './dist/js', // 只上传js
+    ignore: ['node_modules'],
+    release: process.env.SENTRY_RELEASE, // 对应main.js版本号
+    cleanArtifacts: true, // 先清理再上传
   }),
 ].filter(Boolean)
 
@@ -45,7 +61,6 @@ const prodWebpackConfig = merge(common, {
   externals: {
     jquery: '$',
     react: 'React',
-    'react-dom': 'ReactDOM',
   },
   plugins: PLUGINS,
   optimization: {

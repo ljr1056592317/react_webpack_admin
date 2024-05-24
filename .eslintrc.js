@@ -57,6 +57,7 @@ module.exports = {
     'no-unused-vars': WARN, // 禁止出现未使用过的变量
     '@typescript-eslint/no-unused-vars': WARN,
     '@typescript-eslint/promise-function-async': OFF,
+    '@typescript-eslint/no-unnecessary-type-assertion': OFF,
   },
   // 忽略文件
   ignorePatterns: [
