@@ -1,6 +1,6 @@
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin') // webpack5中由clean。clean替代
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer') // 使用交互式可缩放树形地图可视化 webpack 输出文件的大小
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 抽离css文件, 这个插件将CSS取到单独的文件中。它为每个包含CSS的JS文件创建一个CSS文件。它支持按需加载 CSS 和 SourceMaps。
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin') // 这个插件优化和压缩css
@@ -34,22 +34,22 @@ const PLUGINS = [
     // minRatio: 0.8, // 压缩比
   }),
   // 打包时上传源代码到错误监控系统中
-  sentryWebpackPlugin({
-    org: SentryConfig.org, // 组织
-    project: SentryConfig.project, // sentry创建的项目名字
-    authToken: SentryConfig.authToken, // 令牌
-    include: './dist/js', // 只上传js
-    ignore: ['node_modules'],
-    release: process.env.SENTRY_RELEASE, // 对应main.js版本号
-    cleanArtifacts: true, // 先清理再上传
-  }),
+  // sentryWebpackPlugin({
+  //   org: SentryConfig.org, // 组织
+  //   project: SentryConfig.project, // sentry创建的项目名字
+  //   authToken: SentryConfig.authToken, // 令牌
+  //   include: './dist/js', // 只上传js
+  //   ignore: ['node_modules'],
+  //   release: process.env.SENTRY_RELEASE, // 对应main.js版本号
+  //   cleanArtifacts: true, // 先清理再上传
+  // }),
 ].filter(Boolean)
 
 const prodWebpackConfig = merge(common, {
   mode: 'production',
   // 生产环境不开启源代码映射，安全问题。但我们测试环境可以开启，方便我们在测试环境定位问题
   // 如果引入了错误监控系统sentry，那么生产环境就的
-  devtool: PROJECTINFO.devtool,
+  // devtool: PROJECTINFO.devtool,
   output: {
     publicPath: '/',
     filename: 'js/[name].[contenthash:8].js',

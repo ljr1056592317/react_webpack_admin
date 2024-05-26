@@ -58,6 +58,9 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': WARN,
     '@typescript-eslint/promise-function-async': OFF,
     '@typescript-eslint/no-unnecessary-type-assertion': OFF,
+    '@typescript-eslint/strict-boolean-expressions': OFF,
+    '@typescript-eslint/prefer-nullish-coalescing': OFF,
+    'react/prop-types': OFF,
   },
   // 忽略文件
   ignorePatterns: [

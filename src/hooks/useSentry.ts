@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/react'
 import { useEffect } from 'react'
-const useSentry = (SentryDns: string) => {
+const useSentry = (SentryDns: string, isUseSentry: boolean) => {
+  if (!isUseSentry) return
   useEffect(() => {
     Sentry.init({
       dsn: SentryDns,
