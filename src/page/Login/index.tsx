@@ -4,13 +4,31 @@ import { LoginForm } from '@ant-design/pro-components'
 import styles from './index.module.less'
 import { PROJECTINFO } from '@/utils/envConstans'
 import logo from '@/assets/logo.svg'
-import { type LoginType } from '@/types/login'
+import type { LoginParams, LoginType } from '@/utils/types/login'
 import { LOGIN_TYPE } from '@/utils/enums'
 import Account from './components/Account'
 import Mobile from './components/Mobile'
+import { Login } from '@/services/logic/login'
 
 const LoginPage: FC = () => {
   const [loginType, setLoginType] = useState<LoginType>(LOGIN_TYPE.ACCOUNT)
+  // const [] = useRequest()
+  const handleSubmit = async (values: LoginParams) => {
+    console.log(values, 'values')
+    const x = await Login({ user_name: '1', password: '1234', type: loginType })
+    if (x?.data) {
+      console.log(x, 'loginType')
+    }
+    // try {
+    //   console.log(values, 'values');
+    //   const x = await Login({ user_name: '1', password: '1234', type: loginType })
+    //   console.log(x, 'loginType');
+    // } catch (error) {
+    //   console.log(error, 'error');
+
+    // }
+  }
+
   const TbasItems: TabsProps['items'] = [
     {
       label: '账号密码登陆',
@@ -41,8 +59,8 @@ const LoginPage: FC = () => {
                 // loading: loginLoading,
               },
             }}
-            onFinish={async (values) => {
-              // await handleSubmit(values as LoginParams);
+            onFinish={(values) => {
+              handleSubmit(values as LoginParams)
             }}
           >
             <Tabs

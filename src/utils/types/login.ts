@@ -1,5 +1,5 @@
 import { type LOGIN_TYPE } from '@/utils/enums'
-import type { EnumValues } from '@/utils/'
+import type { EnumValues } from './index'
 
 /**
  * @description: 登录类型
