@@ -12,11 +12,6 @@ const asideMenuConfig: MenuDataItem[] = [
     path: '/home',
     icon: 'SmileOutlined',
   },
-  // {
-  //   name: '关于',
-  //   path: '/about',
-  //   icon: 'SmileOutlined',
-  // },
   {
     name: 'State',
     path: '/state',

@@ -1,9 +1,11 @@
 import { GithubOutlined } from '@ant-design/icons'
 import { DefaultFooter } from '@ant-design/pro-components'
+import styles from './index.module.less'
 
 const Footer: React.FC = () => {
   return (
     <DefaultFooter
+      className={styles.footer}
       copyright="@2019 蚂蚁金服体验技术部出品"
       links={[
         {

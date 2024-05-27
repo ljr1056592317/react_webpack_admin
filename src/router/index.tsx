@@ -12,23 +12,27 @@ const NotFound = SuspenseLazy(() => import(/* webpackChunkName:"NotFound" */ '@/
 
 const routes: RouteObject[] = [
   {
+    path: '/',
+    element: <Navigate to="/user/login" />, // 重定向
+  },
+  {
     path: '/user/login',
     element: Login,
   },
-  {
-    path: '/admin',
-    element: BaseLayout,
-    children: [
-      {
-        path: '/admin',
-        element: <Navigate to="/admin/home" />, // 重定向
-      },
-      // {
-      //   path: 'home',
-      //   element: Home,
-      // },
-    ],
-  },
+  // {
+  //   path: '/admin',
+  //   element: BaseLayout,
+  //   children: [
+  //     {
+  //       path: '/admin',
+  //       element: <Navigate to="/admin/home" />, // 重定向
+  //     },
+  //     {
+  //       path: 'home',
+  //       element: Home,
+  //     },
+  //   ],
+  // },
   // 未匹配到页面
   {
     path: '*',

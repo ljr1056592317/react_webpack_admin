@@ -61,6 +61,8 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': OFF,
     '@typescript-eslint/prefer-nullish-coalescing': OFF,
     'react/prop-types': OFF,
+    '@typescript-eslint/no-floating-promises': OFF,
+    '@typescript-eslint/consistent-type-definitions': OFF,
   },
   // 忽略文件
   ignorePatterns: [

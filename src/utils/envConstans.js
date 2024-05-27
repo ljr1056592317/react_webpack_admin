@@ -1,4 +1,4 @@
-const PROJECT_NAME = '后台系统'
+const PROJECT_NAME = '基础后台系统'
 const projectMapObj = {
   dev: {
     name: PROJECT_NAME,
