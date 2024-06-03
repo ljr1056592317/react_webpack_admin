@@ -63,6 +63,7 @@ module.exports = {
     'react/prop-types': OFF,
     '@typescript-eslint/no-floating-promises': OFF,
     '@typescript-eslint/consistent-type-definitions': OFF,
+    // 'no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
   },
   // 忽略文件
   ignorePatterns: [

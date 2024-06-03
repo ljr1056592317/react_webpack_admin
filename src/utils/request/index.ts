@@ -1,10 +1,11 @@
-import axios, { type AxiosResponse } from 'axios'
+import axios, { type AxiosResponse, type AxiosRequestConfig } from 'axios'
 import Nprogress from 'nprogress'
 import { getLocalStorageItem } from '../index'
 import { LOCAL_STORAGE, REQUEST_CODE } from '../enums'
 import { debounce } from 'lodash-es'
 import 'nprogress/nprogress.css'
 import { message } from 'antd'
+import type { Response } from '@/utils/types'
 
 /**
  * @description: 防抖函数统一处理异常错误,单位时间内只显示最新的错误信息
@@ -42,13 +43,13 @@ service.interceptors.request.use((config) => {
 // 响应拦截器中response的处理回调
 const responseHandle = (res: AxiosResponse<any, any>) => {
   // 未设置状态码则默认成功状态
-  const { data, request } = res
+  const { data } = res as Response<any>
   const code = data.code || 200
   Nprogress.done()
   // 二进制数据则直接返回
-  if (request.responseType === 'blob' || request.responseType === 'arraybuffer') {
-    return data
-  }
+  //   if (request.responseType === 'blob' || request.responseType === 'arraybuffer') {
+  //     return data
+  //   }
   if (code === 200) {
     return data
   } else {
@@ -75,6 +76,50 @@ const responseErrorHandle = (error: any) => {
   return Promise.reject(new Error('error---服务错误了'))
 }
 
-service.interceptors.response.use(responseHandle, responseErrorHandle)
+service.interceptors.response.use((response) => {
+  // 未设置状态码则默认成功状态
+  const { data, request } = response
+  const code = data.code || 200
+  Nprogress.done()
+  // 二进制数据则直接返回
+  if (request.responseType === 'blob' || request.responseType === 'arraybuffer') {
+    return data
+  }
+  if (code === 200) {
+    return data
+  } else {
+    // 401权限 --登录信息失效
+    if (code === REQUEST_CODE.UNAUTHORIZED) {
+      // 退出登录返回到登录页
+    }
+    debounceError(JSON.stringify(data.msg))
+    return Promise.reject(new Error('error'))
+  }
+}, responseErrorHandle)
 
-export default service
+/**
+ * @description: 导出封装的请求方法
+ */
+export const httpRequest = {
+  get<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<Response<T>> {
+    return service(url, { method: 'GET', params: data, ...config })
+  },
+
+  post<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<Response<T>> {
+    return service(url, { method: 'POST', data, ...config })
+  },
+
+  put<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<Response<T>> {
+    return service(url, { method: 'PUT', data, ...config })
+  },
+
+  delete<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<Response<T>> {
+    return service(url, { method: 'DELETE', data, ...config })
+  },
+
+  patch<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<Response<T>> {
+    return service(url, { method: 'PATCH', data, ...config })
+  },
+}
+
+export default httpRequest

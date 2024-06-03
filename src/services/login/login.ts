@@ -1,10 +1,5 @@
-/*
- * @Description: 用户登录模块 API
- * @Version: 2.0
- * @Author: admin丶
- * @Date: 2022-11-29 16:38:17
- * @LastEditors: admin丶
- * @LastEditTime: 2023-10-26 17:24:29
+/**
+ * 和登陆模块有关的api
  */
 import type { LoginTypes } from '@/utils/types'
 import type { LoginParams } from '@/utils/types/login'
@@ -41,8 +36,8 @@ export const Login = (options?: LoginParams) => httpRequest.post<LoginTypes>('/a
 //  */
 // export const getRoutesMenus = () => httpRequest.get<API.MENUMANAGEMENT[]>('/auth/routes-menu');
 
-// /**
-//  * @description: 获取图形验证码
-//  * @Author: admin丶
-//  */
-// export const getCaptcha = () => httpRequest.get<string>('/auth/verify-code');
+/**
+ * @description: 获取图形验证码
+ * @Author: admin丶
+ */
+export const getCaptcha = () => httpRequest.get<string>('/auth/verify-code')

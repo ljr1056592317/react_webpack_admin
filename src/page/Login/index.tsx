@@ -5,28 +5,31 @@ import styles from './index.module.less'
 import { PROJECTINFO } from '@/utils/envConstans'
 import logo from '@/assets/logo.svg'
 import type { LoginParams, LoginType } from '@/utils/types/login'
-import { LOGIN_TYPE } from '@/utils/enums'
+import { LOCAL_STORAGE, LOGIN_TYPE } from '@/utils/enums'
 import Account from './components/Account'
 import Mobile from './components/Mobile'
-import { Login } from '@/services/logic/login'
+import { Login } from '@/services/login/login'
+import { useRequest, useLocalStorageState } from 'ahooks'
 
 const LoginPage: FC = () => {
   const [loginType, setLoginType] = useState<LoginType>(LOGIN_TYPE.ACCOUNT)
-  // const [] = useRequest()
-  const handleSubmit = async (values: LoginParams) => {
-    console.log(values, 'values')
-    const x = await Login({ user_name: '1', password: '1234', type: loginType })
-    if (x?.data) {
-      console.log(x, 'loginType')
-    }
-    // try {
-    //   console.log(values, 'values');
-    //   const x = await Login({ user_name: '1', password: '1234', type: loginType })
-    //   console.log(x, 'loginType');
-    // } catch (error) {
-    //   console.log(error, 'error');
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+  const [_localStoreValue, setLocalStore] = useLocalStorageState(LOCAL_STORAGE.ACCESS_TOKEN)
 
-    // }
+  const { run: runLogin, data: loginres } = useRequest(Login, {
+    manual: true,
+    onSuccess: ({ code, data }) => {
+      if (code === 200 && data) {
+        // 设置token到local
+        setLocalStore(data.access_token)
+      }
+    },
+  })
+  console.log(loginres, 'loginres1')
+
+  const handleSubmit = async (values: LoginParams) => {
+    const params = { ...values, password: 'IqDDrMKzGqHgIOW7ya8cMQ==', type: loginType }
+    runLogin(params)
   }
 
   const TbasItems: TabsProps['items'] = [

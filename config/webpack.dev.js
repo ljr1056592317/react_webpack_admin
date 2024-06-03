@@ -31,6 +31,17 @@ const devWebpackConfig = merge(common, {
   devServer: {
     host: SERVER_HOST, // 指定 host，不设置的话默认是 localhost
     port: SERVER_PORT, // 指定端口，默认是8080
+    proxy: [],
+    proxy: [
+      {
+        context: ['/api'],
+        target: ' http://127.0.0.1:6688', // 代理地址
+        // 配置了这个可以从 http 代理到 https
+        // 依赖 origin 的功能可能需要这个，比如 cookie
+        changeOrigin: true,
+        pathRewrite: { '^/api': '/v1' },
+      },
+    ],
     client: {
       // 控制日志输出格式
       logging: 'info', // 选择 'none', 'error', 'warn', 'info', 'log', 或 'verbose'
