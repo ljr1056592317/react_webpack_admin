@@ -40,27 +40,6 @@ service.interceptors.request.use((config) => {
   return config
 })
 
-// 响应拦截器中response的处理回调
-const responseHandle = (res: AxiosResponse<any, any>) => {
-  // 未设置状态码则默认成功状态
-  const { data } = res as Response<any>
-  const code = data.code || 200
-  Nprogress.done()
-  // 二进制数据则直接返回
-  //   if (request.responseType === 'blob' || request.responseType === 'arraybuffer') {
-  //     return data
-  //   }
-  if (code === 200) {
-    return data
-  } else {
-    // 401权限 --登录信息失效
-    if (code === REQUEST_CODE.UNAUTHORIZED) {
-      // 退出登录返回到登录页
-    }
-    debounceError(JSON.stringify(data.msg))
-    return Promise.reject(new Error('error'))
-  }
-}
 // 响应拦截器中错误的处理回调
 const responseErrorHandle = (error: any) => {
   console.log('err' + error)

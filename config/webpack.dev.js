@@ -41,6 +41,14 @@ const devWebpackConfig = merge(common, {
         changeOrigin: true,
         pathRewrite: { '^/api': '/v1' },
       },
+      {
+        context: ['/app-vue3'],
+        target: '//localhost:7001', // 代理地址
+        // 配置了这个可以从 http 代理到 https
+        // 依赖 origin 的功能可能需要这个，比如 cookie
+        changeOrigin: true,
+        pathRewrite: { '^/app-vue3': '' },
+      },
     ],
     client: {
       // 控制日志输出格式
