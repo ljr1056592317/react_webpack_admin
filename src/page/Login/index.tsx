@@ -20,8 +20,7 @@ function LoginPage() {
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [_localStoreValue, setLocalStore] = useLocalStorageState(LOCAL_STORAGE.ACCESS_TOKEN)
   const { globalStore } = useStores()
-  const { initUserAuthority, setnum, num } = globalStore
-  console.log(setnum, 'setnum')
+  const { initUserAuthority } = globalStore
 
   const navigate = useNavigate()
   const {
@@ -101,13 +100,6 @@ function LoginPage() {
           </LoginForm>
         </Col>
       </Row>
-      <button
-        onClick={() => {
-          setnum()
-        }}
-      >
-        点我改变了-{num}
-      </button>
     </div>
   )
 }

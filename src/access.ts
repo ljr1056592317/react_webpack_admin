@@ -8,33 +8,28 @@ import type { InitialStateTypes } from '@/utils/types'
 
 export default function access(initialState: InitialStateTypes | undefined) {
   // 获取按钮权限集合
-  const { Permissions, RouteMenu } = initialState ?? {}
+  const { Permissions, RouteMenu = [] } = initialState ?? {}
   /**
-   * @description: 获取当前所有路由
+   * @description: 获取当前所有路由路径，进行拉平方便管理
    * @author: admin丶
    */
-  const getRouteNames = (tree = RouteMenu): string[] => {
-    // 收集当前层级的所有 name 属性
+  const getRoutePaths = (tree = RouteMenu): string[] => {
     let result: string[] = []
-    // 遍历收集
-    forEach(tree, (node: API.MENUMANAGEMENT) => {
-      result.push(node.path)
-      if (node?.routes?.length) {
-        result = result.concat(getRouteNames(node.routes))
+    tree.forEach((item) => {
+      result.push(item.path)
+      if (item?.routes?.length) {
+        result = result.concat(getRoutePaths(item.routes))
       }
     })
     return result
   }
+  const allRoutePaths = getRoutePaths()
   return {
     // 判断是否有操作权限
     operationPermission: (data: string) => (Permissions ? Permissions.includes(data) : false),
     // 判断是否有权限访问菜单
     adminRouteFilter: (path: string) => {
-      const allRouteNames = getRouteNames()
-      console.log(allRouteNames, 'allRouteNames', path, 'route.name')
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      return allRouteNames.includes(path)
+      return allRoutePaths.includes(path)
     },
   }
 }

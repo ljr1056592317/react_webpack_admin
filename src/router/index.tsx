@@ -19,9 +19,6 @@ const routes: RouteObject[] = [
   {
     path: '/',
     element: BaseLayout,
-    // element: (
-    //   <RequireAuth fallbackPath={'admin'}>{BaseLayout}</RequireAuth>
-    // ),
     children: [
       {
         path: '/',

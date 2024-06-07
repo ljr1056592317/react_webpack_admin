@@ -8,8 +8,6 @@ class Global {
     makeAutoObservable(this)
   }
 
-  num = 0
-
   // 当前的用户信息
   CurrentUser = {}
   // 菜单信息
@@ -39,13 +37,10 @@ class Global {
         this.Permissions = get(permissionInfo, 'data', [])
       })
     } catch (error) {
+      // 如果有失败就做跳转等
+      console.log(error, 'error')
       // history.push(ROUTES.LOGIN);
-      return {}
     }
-  }
-
-  setnum = () => {
-    this.num = this.num + 1
   }
 
   get useAccess() {
