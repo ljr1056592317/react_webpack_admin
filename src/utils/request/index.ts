@@ -1,4 +1,4 @@
-import axios, { type AxiosResponse, type AxiosRequestConfig } from 'axios'
+import axios, { type AxiosRequestConfig } from 'axios'
 import Nprogress from 'nprogress'
 import { getLocalStorageItem } from '../index'
 import { LOCAL_STORAGE, REQUEST_CODE } from '../enums'

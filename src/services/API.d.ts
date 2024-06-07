@@ -51,9 +51,9 @@ declare global {
      */
     type MENUMANAGEMENT = {
       menu_id: string // 菜单id
-      name: string // 国际化对应的name
+      name?: string // 国际化对应的name
       menu_type: MenuTypes // 菜单类型
-      path?: string // 路由url
+      path: string // 路由url
       icon?: string // 菜单图标
       component?: string // 菜单对应的文件路径
       redirect?: string // 路由重定向地址

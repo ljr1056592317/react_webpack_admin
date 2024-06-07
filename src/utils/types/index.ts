@@ -106,9 +106,9 @@ export type InitialStateTypes = {
   Locales?: Record<string, any>
   Access_token?: string
   Settings?: Partial<LayoutSettings>
-  //   CurrentUser?: API.USERMANAGEMENT;
+  CurrentUser?: API.USERMANAGEMENT
   Permissions?: string[]
-  //   RouteMenu?: API.MENUMANAGEMENT[];
+  RouteMenu?: API.MENUMANAGEMENT[]
   Collapsed?: boolean
 }
 
@@ -157,3 +157,18 @@ export type Flag = EnumValues<typeof FLAG>
  * @author: admin丶
  */
 export type PathNames = EnumValues<typeof ROUTES>
+
+export interface RequireAuthProps {
+  /**
+   * Children component which will require auth to access
+   */
+  children: JSX.Element
+  /**
+   * Path to redirect if the user is not authenticated
+   *
+   * @example
+   * `/login`
+   */
+  fallbackPath?: string
+  path: string
+}

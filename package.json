@@ -100,6 +100,7 @@
     "ahooks": "^3.8.0",
     "antd": "^5.17.3",
     "axios": "^1.7.2",
+    "crypto-js": "^4.2.0",
     "lodash-es": "^4.17.21",
     "mobx": "^6.12.3",
     "mobx-react-lite": "^4.0.7",

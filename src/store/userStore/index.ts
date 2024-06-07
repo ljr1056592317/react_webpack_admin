@@ -1,5 +1,4 @@
-import { makeAutoObservable, observable, action, computed, flow } from 'mobx'
-// import {globalStore} from '../global';
+import { makeAutoObservable } from 'mobx'
 
 class UserStore {
   constructor() {
@@ -7,18 +6,8 @@ class UserStore {
     makeAutoObservable(this)
   }
 
-  count = 0
-  name = 'react'
-  data: any = []
-  loading = true
-
-  addCount = () => {
-    this.count++
-  }
-
-  setName = (data: string) => {
-    this.name = data
-  }
+  // 当前的用户信息
+  CurrentUser = {}
 }
 const userStore = new UserStore()
 export default userStore

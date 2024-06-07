@@ -5,6 +5,7 @@
 import { type RouteObject, Navigate } from 'react-router-dom'
 import SuspenseLazy from '@/components/SuspenseLazy'
 import { asyncLoadRouteCom } from '@/utils/permission'
+import RequireAuth from '@/components/RequireAuth'
 const BaseLayout = SuspenseLazy(() => import(/* webpackChunkName:"BaseLayout" */ '@/components/Layout'))
 const Home = SuspenseLazy(() => import(/* webpackChunkName:"Home" */ '@/page/Home'))
 const Login = SuspenseLazy(() => import(/* webpackChunkName:"Login" */ '@/page/Login'))
@@ -12,27 +13,26 @@ const NotFound = SuspenseLazy(() => import(/* webpackChunkName:"NotFound" */ '@/
 
 const routes: RouteObject[] = [
   {
-    path: '/',
-    element: <Navigate to="/user/login" />, // 重定向
-  },
-  {
     path: '/user/login',
     element: Login,
   },
-  // {
-  //   path: '/admin',
-  //   element: BaseLayout,
-  //   children: [
-  //     {
-  //       path: '/admin',
-  //       element: <Navigate to="/admin/home" />, // 重定向
-  //     },
-  //     {
-  //       path: 'home',
-  //       element: Home,
-  //     },
-  //   ],
-  // },
+  {
+    path: '/',
+    element: BaseLayout,
+    // element: (
+    //   <RequireAuth fallbackPath={'admin'}>{BaseLayout}</RequireAuth>
+    // ),
+    children: [
+      {
+        path: '/',
+        element: <Navigate to="/dashboard" />, // 重定向
+      },
+      {
+        path: '/dashboard',
+        element: <RequireAuth path={'/dashboard'}>{Home}</RequireAuth>,
+      },
+    ],
+  },
   // 未匹配到页面
   {
     path: '*',

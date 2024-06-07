@@ -7,6 +7,7 @@ import styles from './index.less'
 import { avatarProps } from './components'
 import Footer from '../Footer'
 import { asideMenuConfig, icons } from './menuConfig'
+import { useStores } from '@/store'
 
 const menuItemRender = (item: MenuDataItem, defaultDom: ReactNode) => {
   if (item.path == null || !item.path) {
@@ -34,6 +35,8 @@ const BasicLayout: React.FC = () => {
     layout: 'mix',
     contentWidth: 'Fluid', // 流式
   })
+  const { globalStore } = useStores()
+  const { RouteMenu } = globalStore
   return (
     <div id="base-pro-layout-div" className={styles.baseProLayoutDiv}>
       <ProConfigProvider hashed={false}>
@@ -63,9 +66,11 @@ const BasicLayout: React.FC = () => {
             }}
             // 页面页脚的配置
             footerRender={() => <Footer />}
+            // 关闭国际化，远程加载菜单的方法
+            menu={{ locale: false, request: async () => RouteMenu || [] }}
             // 自定义菜单项的渲染
             menuItemRender={menuItemRender}
-            menuDataRender={() => loopMenuItem(asideMenuConfig)}
+            // menuDataRender={() => loopMenuItem(asideMenuConfig)}
             {...settings}
           >
             <PageContainer>
