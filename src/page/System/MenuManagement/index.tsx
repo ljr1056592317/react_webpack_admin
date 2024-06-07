@@ -1,5 +1,11 @@
+import TableTemplate from './components/TableTemplate'
+
 const MenuManagement = () => {
-  return <div>菜单管理</div>
+  return (
+    <div>
+      <TableTemplate />
+    </div>
+  )
 }
 
 export default MenuManagement

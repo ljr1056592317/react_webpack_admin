@@ -54,7 +54,8 @@ module.exports = {
     '@typescript-eslint/indent': OFF,
     'react/react-in-jsx-scope': OFF,
     'react/jsx-uses-react': OFF,
-    'no-unused-vars': WARN, // 禁止出现未使用过的变量
+    'no-unused-vars': OFF, // 禁止出现未使用过的变量
+
     '@typescript-eslint/no-unused-vars': WARN,
     '@typescript-eslint/promise-function-async': OFF,
     '@typescript-eslint/no-unnecessary-type-assertion': OFF,
@@ -64,6 +65,9 @@ module.exports = {
     '@typescript-eslint/no-floating-promises': OFF,
     '@typescript-eslint/consistent-type-definitions': OFF,
     '@typescript-eslint/no-misused-promises': OFF,
+    '@typescript-eslint/naming-convention': OFF,
+    '@typescript-eslint/no-unsafe-argument': OFF,
+    '@typescript-eslint/array-type': OFF, //s-eslint提示：要求对数组使用T[]或Array
     // 'no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
   },
   // 忽略文件

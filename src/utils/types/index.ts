@@ -1,13 +1,6 @@
 import type { Settings as LayoutSettings } from '@ant-design/pro-components'
 
-import {
-  type FLAG,
-  type LANGS,
-  type LOCAL_STORAGE,
-  type REQUEST_METHODS,
-  type ROUTES,
-  type STATUS,
-} from '@/utils/enums'
+import type { FLAG, LANGS, LOCAL_STORAGE, REQUEST_METHODS, ROUTES, STATUS } from '@/utils/enums'
 
 /**
  * @description: 获取枚举的所有 key
@@ -117,7 +110,7 @@ export type InitialStateTypes = {
  * @author: admin丶
  */
 export type AppLocalCacheTypes = {
-  //   [LOCAL_STORAGE.USER_INFO]?: API.USERMANAGEMENT;
+  [LOCAL_STORAGE.USER_INFO]?: API.USERMANAGEMENT
   [LOCAL_STORAGE.LAYOUT]?: Partial<LayoutSettings>
   [LOCAL_STORAGE.ACCESS_TOKEN]?: string
 }

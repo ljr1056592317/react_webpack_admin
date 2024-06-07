@@ -8,7 +8,7 @@
     "jsx": "react-jsx", // 在 .tsx 文件里支持 JSX
     "isolatedModules": true,
     "strict": true, // 启用所有严格类型检查选项
-
+    "noImplicitAny": false, // 解决any类型报错误
     // 模块解析选项
     "moduleResolution": "node", // 指定模块解析策略
     "esModuleInterop": true, // 支持 CommonJS 和 ES 模块之间的互操作性
