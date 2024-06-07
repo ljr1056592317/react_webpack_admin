@@ -10,6 +10,12 @@ const BaseLayout = SuspenseLazy(() => import(/* webpackChunkName:"BaseLayout" */
 const Home = SuspenseLazy(() => import(/* webpackChunkName:"Home" */ '@/page/Home'))
 const Login = SuspenseLazy(() => import(/* webpackChunkName:"Login" */ '@/page/Login'))
 const NotFound = SuspenseLazy(() => import(/* webpackChunkName:"NotFound" */ '@/page/NotFound'))
+const MenuManagement = SuspenseLazy(
+  () => import(/* webpackChunkName:"MenuManagement" */ '@/page/System/MenuManagement'),
+)
+const UserManagement = SuspenseLazy(
+  () => import(/* webpackChunkName:"MenuManagement" */ '@/page/System/UserManagement'),
+)
 
 const routes: RouteObject[] = [
   {
@@ -27,6 +33,24 @@ const routes: RouteObject[] = [
       {
         path: '/dashboard',
         element: <RequireAuth path={'/dashboard'}>{Home}</RequireAuth>,
+      },
+      {
+        path: '/system',
+        children: [
+          {
+            path: '/system',
+            element: <Navigate to="/system/user-management" />,
+          },
+          // 用户管理
+          {
+            path: '/system/user-management',
+            element: <RequireAuth path="/system/user-management">{UserManagement}</RequireAuth>,
+          },
+          {
+            path: '/system/menu-management',
+            element: <RequireAuth path="/system/user-management">{MenuManagement}</RequireAuth>,
+          },
+        ],
       },
     ],
   },

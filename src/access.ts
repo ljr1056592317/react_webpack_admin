@@ -1,9 +1,6 @@
 /**
  * @see https://umijs.org/zh-CN/plugins/plugin-access 参考umi的权限设计来实现
  * */
-
-import { forEach } from 'lodash-es'
-
 import type { InitialStateTypes } from '@/utils/types'
 
 export default function access(initialState: InitialStateTypes | undefined) {
@@ -29,6 +26,8 @@ export default function access(initialState: InitialStateTypes | undefined) {
     operationPermission: (data: string) => (Permissions ? Permissions.includes(data) : false),
     // 判断是否有权限访问菜单
     adminRouteFilter: (path: string) => {
+      console.log('adminRouteFilter---执行了')
+
       return allRoutePaths.includes(path)
     },
   }
