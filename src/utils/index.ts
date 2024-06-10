@@ -73,15 +73,3 @@ export const randomTagColor = () => {
   // Math.floor(Math.random()*(max-min+1))+min 生成[min,max]之间的随机数，包括它们自己
   return colors[Math.floor(Math.random() * (colors.length - 1 - 0 + 1)) + 0]
 }
-
-// eslint-disable-next-line @typescript-eslint/ban-types
-// 简易的lodash版本的mapValues,
-// mapValues({dog:{name:'狗'},cat: {name:'猫'}},(item)=> item.name)  ====> {dog:'狗, cat: '猫'}
-export const mapValues = (object: Record<string, any>, fn): Record<string, any> => {
-  if (!(typeof fn === 'function')) return object
-  const mapObj = {}
-  Object.keys(object).forEach((item) => {
-    mapObj[item] = fn(object[item])
-  })
-  return mapObj
-}

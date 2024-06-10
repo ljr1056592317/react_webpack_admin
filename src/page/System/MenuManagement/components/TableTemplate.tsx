@@ -2,12 +2,14 @@ import { type ActionType, ProTable, type ProColumns } from '@ant-design/pro-comp
 import { useRequest } from 'ahooks'
 import { useRef, type FC } from 'react'
 import type { SearchParams } from '@/utils/types/system/menu-management'
-import { formatResponse, mapValues, randomTagColor } from '@/utils'
+import { formatResponse, randomTagColor } from '@/utils'
+import { mapValues } from 'lodash-es'
 import { getMenuList } from '@/services/system/menu-management'
 import { ROUTES } from '@/utils/enums'
 import { Space, Tag } from 'antd'
 import { MenuTypeEnum } from '@/utils/constans'
 import Icon from '@/components/Icon'
+import Access from '@/components/Access'
 
 /**
  * @description: 默认不显示的 column 项
@@ -125,6 +127,9 @@ const TableTemplate: FC = () => {
       />
       <div>
         <Icon name="StarOutlined" style={{ color: 'red', fontSize: '40px' }} />
+        <Access permissionStr="system:menu-management:add" fallback={null}>
+          <button>新增按钮</button>
+        </Access>
       </div>
     </>
   )
