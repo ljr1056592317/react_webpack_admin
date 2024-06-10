@@ -68,6 +68,7 @@ module.exports = {
     '@typescript-eslint/naming-convention': OFF,
     '@typescript-eslint/no-unsafe-argument': OFF,
     '@typescript-eslint/array-type': OFF, //s-eslint提示：要求对数组使用T[]或Array
+    '@typescript-eslint/dot-notation': OFF, // 尽可能地执行点符号
     // 'no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
   },
   // 忽略文件

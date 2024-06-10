@@ -2,10 +2,12 @@ import { type ActionType, ProTable, type ProColumns } from '@ant-design/pro-comp
 import { useRequest } from 'ahooks'
 import { useRef, type FC } from 'react'
 import type { SearchParams } from '@/utils/types/system/menu-management'
-import { formatResponse, randomTagColor } from '@/utils'
+import { formatResponse, mapValues, randomTagColor } from '@/utils'
 import { getMenuList } from '@/services/system/menu-management'
 import { ROUTES } from '@/utils/enums'
 import { Space, Tag } from 'antd'
+import { MenuTypeEnum } from '@/utils/constans'
+import Icon from '@/components/Icon'
 
 /**
  * @description: 默认不显示的 column 项
@@ -38,6 +40,7 @@ const TableTemplate: FC = () => {
       manual: true,
     },
   )
+
   const columns: ProColumns<API.MENUMANAGEMENT>[] = [
     /* 菜单名称 */
     {
@@ -47,8 +50,6 @@ const TableTemplate: FC = () => {
       hideInSearch: true,
       fixed: 'left',
       render: (_, record) => {
-        console.log(record, 'record')
-
         return record.redirect ? (
           <Tag>{1111}</Tag>
         ) : (
@@ -64,17 +65,10 @@ const TableTemplate: FC = () => {
       align: 'center',
       filters: true,
       onFilter: true,
-      // valueEnum: mapValues(MenuTypeEnum, (item: string) =>
-      // 	formatMessage({ id: formatPerfix(ROUTES.MENUMANAGEMENT, `menu_type.${item}`) })),
-      render: (_, record) => (
-        <Tag color={randomTagColor()}>
-          1111
-          {/* {formatMessage({
-						id:
-							formatPerfix(ROUTES.MENUMANAGEMENT, `menu_type.${MenuTypeEnum[record.menu_type]}`),
-					})} */}
-        </Tag>
-      ),
+      // valueEnum: mapValues(MenuTypeEnum, (item) => item)
+      render: (_, record) => {
+        return <Tag color={randomTagColor()}>{MenuTypeEnum[record['menu_type']]}</Tag>
+      },
     },
     /* 路由地址 */
     {
@@ -129,6 +123,9 @@ const TableTemplate: FC = () => {
         // }}
         // scroll={{ x: columnScrollX(columns) }}
       />
+      <div>
+        <Icon name="StarOutlined" style={{ color: 'red', fontSize: '40px' }} />
+      </div>
     </>
   )
 }
